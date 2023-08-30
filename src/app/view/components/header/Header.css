@@ -1,0 +1,14 @@
+.toolbar-header {
+    background-color: var(--foreground-color) !important;
+    
+}
+.mr-2 {
+    margin-right: 0.2cm;
+}
+.user-menu span {
+    margin-right: 4px;
+}
+.brand-name {
+    position: relative;
+    top: -8px;
+}
