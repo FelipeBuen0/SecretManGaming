@@ -2,13 +2,16 @@
     background-color: var(--foreground-color) !important;
     
 }
-.mr-2 {
-    margin-right: 0.2cm;
-}
-.user-menu span {
-    margin-right: 4px;
-}
 .brand-name {
     position: relative;
     top: -8px;
+}
+.img-logo-smg {
+    width: 32px;
+    height: 32px;
+    top: 4px;
+    background: url(../../../../assets/icons/dark/favicon-32x32.png);
+}
+.w-55{
+    width: 55vw;   
 }

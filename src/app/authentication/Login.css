@@ -1,7 +1,4 @@
-.Login {
-    display: flex;
-    flex-direction: column;
-}
-.header {
-    font-size: 4.6rem !important
+
+.input-width input {
+    width: 100%
 }
