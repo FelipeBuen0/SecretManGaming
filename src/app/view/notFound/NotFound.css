@@ -1,0 +1,14 @@
+.not-found-image {
+    background: url(./assets/404NotFound.svg) center no-repeat;
+    height: 480px;
+}
+.smg-icon {
+    background: url(../../assets/icons/dark/favicon-32x32.png) no-repeat;
+    margin-right: 4px;
+    width: 32px;
+    height: 32px;
+}
+.Link a{
+    text-decoration: none;
+    color: white;
+}

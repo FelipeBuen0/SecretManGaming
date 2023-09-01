@@ -1,17 +1,27 @@
 import { React, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
+import { Session } from '../../utils/Session';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import './Login.css';
 export default function LoginView () {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
-    const users = [{
-        username: '_cebs',
-        password: '123Brasil'
-    }]
+
+    /**
+     * @method
+     * HandlesLogin
+     * */
+    function handleLogin ()  {
+        Session.authenticateUser(username);
+        //TODO: Add UserFeedback component
+    }
+
+    /**
+     * @UserInterface
+     * UI
+     * */
     return (
         <div className="h-screen flex align-items-center justify-content-center sm:max-w-screen">
         <Card region="center" className="sm:w-9 md:w-25rem">
@@ -30,7 +40,7 @@ export default function LoginView () {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    feedback={true}
+                    feedback={false}
                     className="w-12 input-width" 
                 />
                     <label htmlFor="password">Password</label>
@@ -42,13 +52,4 @@ export default function LoginView () {
         </Card>
         </div>
     )
-    function handleLogin (e)  {
-        e.preventDefault()
-        debugger
-        const account = users.find((user) => user.username === username);
-        if (account && account.password === password) {
-            setAuthenticated(true)
-            localStorage.setItem("authenticated", true);
-        }
-    }
 }
