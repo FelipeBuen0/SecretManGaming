@@ -1,0 +1,17 @@
+.toolbar-header {
+    background-color: var(--foreground-color) !important;
+    
+}
+.brand-name {
+    position: relative;
+    top: -8px;
+}
+.img-logo-smg {
+    width: 32px;
+    height: 32px;
+    top: 4px;
+    background: url(../../../../../assets/icons/dark/favicon-32x32.png);
+}
+.w-55{
+    width: 55vw;   
+}
