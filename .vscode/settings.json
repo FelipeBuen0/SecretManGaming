@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "application",
         "routes",
-        "navbar"
+        "navbar",
+        "infrastructure"
     ]
 }
