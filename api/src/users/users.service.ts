@@ -7,23 +7,26 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private _data: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private _userModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto) {
-    const user = new this._data(createUserDto);
+    const user = new this._userModel(createUserDto);
     return user.save();
   }
 
   findAll() {
-    return this._data.find();
+    return this._userModel.find();
   }
 
-  findOne(id: string) {
-    return this._data.findById(id);
+  async findOne(id: string) {
+    return this._userModel.find(user => user._id === id);
+  }
+  async findByEmail(email: string) {
+    return this._userModel.find(user => user.email === email);
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this._data.findByIdAndUpdate(
+    return this._userModel.findByIdAndUpdate(
       {
         _id: id,
       },
@@ -36,7 +39,7 @@ export class UsersService {
     );
   }
   remove(id: string) {
-    return this._data
+    return this._userModel
       .deleteOne({
         _id: id,
       })

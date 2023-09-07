@@ -1,24 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthenticationDto } from './dto/create-authentication.dto';
-import {
-  Authentication,
-  AuthenticationDocument,
-} from './entities/authentication.entity';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service'
 
 @Injectable()
 export class AuthenticationService {
-  constructor(
-    @InjectModel(Authentication.name)
-    private readonly _data: Model<AuthenticationDocument>,
-  ) {}
+  constructor(private _usersService: UsersService) {}
 
-  async authenticate(createAuthenticationDto: CreateAuthenticationDto) {
-    const request = new this._data(createAuthenticationDto);
-    // Use findOne to find a single document by email
-    return await this._data.findOne({ request });
-
+  async signIn(email: string, password: string) {
+    const user = await this._usersService.findByEmail( email );
+    if (!user || user === null) {
+      throw new UnauthorizedException();
+    }
+    if (user[0].password !== password) {
+        throw new UnauthorizedException();
+    }
+    return user;
     // // if (!authentication) {
     //   // Handle the case where no matching authentication record was found
     //   return null;
