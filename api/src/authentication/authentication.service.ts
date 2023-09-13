@@ -7,10 +7,11 @@ export class AuthenticationService {
 
   async signIn(email: string, password: string) {
     const user = await this._usersService.findByEmail( email );
+    console.log(user);
     if (!user || user === null) {
       throw new UnauthorizedException();
     }
-    if (user[0].password !== password) {
+    if (user.password !== password) {
         throw new UnauthorizedException();
     }
     return user;
