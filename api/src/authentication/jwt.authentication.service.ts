@@ -10,6 +10,8 @@ export class AuthenticationService {
   ) {}
 
   async signIn(email: string, password: string) {
+    require('dotenv').config()
+    console.log(process.env)
     const user = await this._usersService.findByEmail( email );
     if (user.password !== password) {
         throw new UnauthorizedException();

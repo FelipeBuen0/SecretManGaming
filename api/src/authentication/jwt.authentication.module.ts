@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
-import { AuthenticationController } from './authentication.controller';
+import { AuthenticationService } from './jwt.authentication.service';
+import { AuthenticationController } from './jwt.authentication.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import {
   Authentication,
   AuthenticationSchema,
-} from './entities/authentication.entity';
+} from './entities/jwt.authentication.entity';
 import { UsersModule } from 'src/users/users.module';
-import { jwtConstants } from './constants/constants';
+import  'dotenv/config';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { jwtConstants } from './constants/constants';
     ]),
     JwtModule.register({
       global: true,
-      secret: jwtConstants.secret,
+      secret: process.env.SECRET_KEY,
       signOptions: { expiresIn: '60m' },
     }),
     UsersModule
