@@ -1,9 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 :root {
   --base-background-color: #27282E;
-  --foreground-color: #161618;
+  --foreground-color: #161D21/* 161618 */;
   --background-color: #333E4C;
   --default-color: #FFF;
 }

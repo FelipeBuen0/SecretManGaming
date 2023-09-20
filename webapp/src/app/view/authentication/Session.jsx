@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-
+import { create } from "../../services/api";
 class Session {
     static profile = null;
     static current = null;
-
     static parse(token) {
         try {
             const base64Url = token.split('.')[1];
@@ -18,12 +17,18 @@ class Session {
         }
     }
 
-    static authenticateUser(username) {
-        localStorage.setItem("auth", username);
+    static async authenticateUser(record) {
+        try {
+            const response = await create('authentication/login', record);
+            localStorage.setItem("auhT", response.data);
+        } catch (error) {
+            return error;
+        }
     }
 
     static clearAuthentication() {
-        localStorage.removeItem("authenticated");
+        localStorage.removeItem("auhT");
+
         // Additional code if needed...
     }
 

@@ -1,21 +1,23 @@
 import { React, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
-import { Session } from '../../utils/Session';
+import { Session } from './Session';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import './Login.css';
 export default function LoginView () {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     /**
      * @method
      * HandlesLogin
      * */
-    function handleLogin ()  {
-        Session.authenticateUser(username);
-        //TODO: Add UserFeedback component
+    async function handleLogin ()  {
+        const record = {email, password}
+        const result = await Session.authenticateUser(record);
+        if (result.response.status === 500) {
+            return console.log('Failed to login')
+        }
     }
 
     /**
@@ -29,11 +31,11 @@ export default function LoginView () {
                 <h1 className="text-3xl text-center">Log-In!</h1>
                 <span className="p-float-label">
                     <InputText 
-                    id="username"
-                    value={username}
+                    id="email"
+                    value={email}
                     className="p-inputtext w-12"
-                    onChange={(e) => setUsername(e.target.value)}/>
-                    <label htmlFor="username">Username</label>
+                    onChange={(e) => setEmail(e.target.value)}/>
+                    <label htmlFor="email">Email</label>
                 </span>
                 <span className="p-float-label mb-4 mt-4">
                     <Password 
@@ -45,7 +47,7 @@ export default function LoginView () {
                 />
                     <label htmlFor="password">Password</label>
                 </span>
-                <Button onClick={handleLogin} style={{backgroundColor: "#309E3A", color: "white", border: "none"}} label="Entrar" size="medium"/>
+                <Button onClick={() => handleLogin()} style={{backgroundColor: "#309E3A", color: "white", border: "none"}} label="Entrar" size="medium"/>
                 <p className="text-center">Esqueceu a senha?</p>
                 <p className="text-center">Criar conta</p>
             </div>

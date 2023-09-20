@@ -8,7 +8,7 @@ import {
   AuthenticationSchema,
 } from './entities/jwt.authentication.entity';
 import { UsersModule } from 'src/users/users.module';
-import  'dotenv/config';
+import 'dotenv/config';
 
 @Module({
   imports: [
@@ -17,10 +17,11 @@ import  'dotenv/config';
     ]),
     JwtModule.register({
       global: true,
-      secret: process.env.SECRET_KEY,
+      secret:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvIGRpYSB0YSBsaW5kbyI6ImNsaW1hIGVuc29sYXJhZG8iLCJwb2lzIGUiOiJhIHZpZGEgbXRvIGxvdWNhIiwiY2hhbWEgZXNzYXMgZGFuYWRhIjoicXVlIHRhIGRvaWRhIHByYSBzZW50YSJ9.BpcqbpdJwRb0cx5x-ud-Jk28Jt8Z_6mi07LtnRBb7Ww',
       signOptions: { expiresIn: '60m' },
     }),
-    UsersModule
+    UsersModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService],

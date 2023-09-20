@@ -3,7 +3,7 @@ import "primereact/resources/themes/viva-dark/theme.css";
 import "primereact/resources/primereact.min.css";
 import Main from '../main/Main';
 import Login from '../authentication/Login';
-import NotFound from '../notFound/NotFound';
+import NotFound from './notFound/NotFound';
 // import About from './components/About';
 //TODO: import PrivateRoute from './components/PrivateRoute'; // Custom private route component
 

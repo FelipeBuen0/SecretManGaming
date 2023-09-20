@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthenticationModule } from './authentication/jwt.authentication.module';
@@ -9,7 +8,7 @@ import { AuthenticationModule } from './authentication/jwt.authentication.module
     MongooseModule.forRoot(
       'mongodb+srv://felipebueno:oJIoWTskH7vuLQT6@bueno.eik19d7.mongodb.net/',
     ),
-    ConfigModule.forRoot(),
+    // ConfigModule.forRoot(),
     UsersModule,
     AuthenticationModule,
   ],

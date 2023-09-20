@@ -1,5 +1,5 @@
 import React from "react";
-
+import Header from "../components/header/Header"
 export default function Main() {
     const products = [{ 
         productId: 1,
@@ -20,6 +20,7 @@ export default function Main() {
     }]
     return (
         <div>
+            <Header></Header>
             <h1 className="mt-2">
                 Header-Content
             </h1>
