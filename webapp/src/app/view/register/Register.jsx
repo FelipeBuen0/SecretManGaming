@@ -1,16 +1,16 @@
 import { React, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
-import { Session } from './Session';
+import { Session } from '../../services/Session';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import './Login.css';
-import { Navigate } from "react-router-dom";
+import './Register.css';
+import { redirect } from "react-router-dom";
 export default function LoginView () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     /**
-     * @method
+     * @function
      * HandlesLogin
      * */
     async function handleLogin ()  {
@@ -18,7 +18,7 @@ export default function LoginView () {
         const result = await Session.authenticateUser(record);
         debugger
         if (result.status === 200 || result.status === 201) {
-            return(<Navigate to='/' replace />)
+            return redirect('/')
         }
         if (result.response.status === 500) {
             return console.log('Failed to login')

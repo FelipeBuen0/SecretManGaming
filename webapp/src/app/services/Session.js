@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create } from "../../services/api";
+import { create } from "./api";
 class Session {
     static profile = null;
     static current = null;
@@ -20,6 +20,8 @@ class Session {
         try {
             const response = await create('authentication/login', record);
             localStorage.setItem("auhT", response.data);
+            Session.current = this.parseToken(response.data);
+            console.log(Session.current)
             return response;
         } catch (error) {
             return error;
@@ -45,8 +47,6 @@ class Session {
         Session.current = null;
         delete Session.current;
         Session.clearAuthentication();
-        localStorage.removeItem("authenticated");
-        // Additional code if needed...
     }
 }
 

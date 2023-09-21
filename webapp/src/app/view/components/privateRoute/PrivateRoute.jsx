@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Session } from '../../authentication/Session';
+import { Session } from '../../../services/Session';
 import { Navigate } from 'react-router-dom';
 
 export const PrivateRoute = ({
@@ -7,9 +7,8 @@ export const PrivateRoute = ({
     redirectPath = '/login',
     children,
   }) => {
-    debugger
+    //Sistema de autenticação está fraco, precisa de melhorias
     if (!Session.parseToken(token)) {
-        debugger
       return <Navigate to={redirectPath} replace />;
     }
     return children;

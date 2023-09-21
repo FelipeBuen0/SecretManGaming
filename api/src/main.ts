@@ -6,7 +6,7 @@ async function bootstrap() {
   app.enableCors();
   await app.listen(3000);
   app.enableCors({
-    origin: ['http://192.168.15.15:3001', 'https://www.google.com'],
+    origin: ['http://192.168.15.15:3001'],
     methods: ['POST', 'PUT', 'DELETE', 'GET'],
   });
 }
