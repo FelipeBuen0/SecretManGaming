@@ -5,6 +5,7 @@ import { Session } from './Session';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import './Login.css';
+import { Navigate } from "react-router-dom";
 export default function LoginView () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +16,10 @@ export default function LoginView () {
     async function handleLogin ()  {
         const record = {email, password}
         const result = await Session.authenticateUser(record);
+        debugger
+        if (result.status === 200 || result.status === 201) {
+            return(<Navigate to='/' replace />)
+        }
         if (result.response.status === 500) {
             return console.log('Failed to login')
         }

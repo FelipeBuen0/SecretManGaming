@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { create } from "../../services/api";
 class Session {
     static profile = null;
     static current = null;
-    static parse(token) {
+    static parseToken(token) {
         try {
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -21,6 +20,7 @@ class Session {
         try {
             const response = await create('authentication/login', record);
             localStorage.setItem("auhT", response.data);
+            return response;
         } catch (error) {
             return error;
         }
@@ -28,8 +28,6 @@ class Session {
 
     static clearAuthentication() {
         localStorage.removeItem("auhT");
-
-        // Additional code if needed...
     }
 
     static validate() {
@@ -49,14 +47,6 @@ class Session {
         Session.clearAuthentication();
         localStorage.removeItem("authenticated");
         // Additional code if needed...
-    }
-
-    static goToLogin() {
-        Session.clearAuthentication();
-        return (
-            <Navigate to="/Login"/>
-        )
-        // Perform navigation to the login page as needed...
     }
 }
 
